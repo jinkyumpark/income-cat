@@ -25,9 +25,16 @@ const Home = () => {
 
 
         <div className='w-100 mt-4 mb-4 row'>
-            <div className='h3 d-inline col-lg-11 col-md-10 col-sm-9'>최근 추가한 수입</div>
+            <div 
+                className='h3 d-inline col-lg-11 col-md-10 col-sm-9'
+            >최근 추가한 수입</div>
 
-            <ModalButton label="수입추가" labelClose="취소" isModalOpen={ isModalOpen } setIsModalOpen= { setIsModalOpen }/>
+            <ModalButton 
+                size="col-lg-1 col-md-2 col-sm-3"
+                label="수입추가"
+                labelClose="취소" 
+                isModalOpen={ isModalOpen } 
+                setIsModalOpen= { setIsModalOpen }/>
         </div>
 
         <CardGroup className='row'>
@@ -71,15 +78,14 @@ const Home = () => {
 
         </CardGroup>
 
-        <Modal
+        <Modals
             show={isModalOpen}
         >
             <Login isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
-        </Modal>
+        </Modals>
 
         </div>
     )
 
 }
-
 export default Home
