@@ -4,9 +4,13 @@ import { FaUserCircle  } from 'react-icons/fa'
 
 import { useState } from 'react' 
 
-const Topnav = () => {
+const Topnav = ({isLoginOpen, setIsLoginOpen}) => {
 
     const [currentPage, setCurrentPage] = useState(0);
+
+    const openCloseLogin = () => {
+        setIsLoginOpen(!isLoginOpen)
+    }
 
     return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-primary'>               
@@ -24,13 +28,14 @@ const Topnav = () => {
             <div className="navbar-nav">
                 <a className="nav-item nav-link" href="/manage">수입관리</a>
                 <a className="nav-item nav-link" href="/info">부업정보</a>
+                <a className="nav-item nav-link" href="/asset">재산관리</a>
                 </div>
         </div>
 
         <div className='nav navbar-nav ps-5 pe-5'>            
-            <a href='/login'>
+            <button className='btn' onClick={openCloseLogin}>
                 <FaUserCircle color='white' fontSize='1.5em'/>
-            </a>
+            </button>
         </div>
 
     </nav>

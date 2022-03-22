@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap'
 
 import classnames from 'classnames'
 
-const ModalButton = ({ isModalOpen, setIsModalOpen, label, labelClose, size }) => {
+const ModalButton = ({ isModalOpen, setIsModalOpen, label, labelClose, css }) => {
     const openCloseModal = () => {
         setIsModalOpen(!isModalOpen)
     }
@@ -13,9 +13,8 @@ const ModalButton = ({ isModalOpen, setIsModalOpen, label, labelClose, size }) =
     <Button 
         onClick={openCloseModal}
         className={classnames(
-            {size},
             isModalOpen && "btn-danger",
-            !isModalOpen && "btn-success"
+            !isModalOpen && "btn-success",
         )}>
             { isModalOpen ? labelClose : label }        
     </Button>

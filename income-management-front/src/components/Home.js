@@ -14,8 +14,33 @@ import IncomeCard from './IncomeCard'
 import ModalButton from './ModalButton'
 import Login from './Login'
 
-const Home = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false)
+const Home = (props) => {
+    const openIncome = () => {
+        props.setIsIncomeOpen(true)
+    }
+
+    const data = [
+            {
+                "incomeType": "주수입",
+                "incomeContent": "큐이엠 5월달 월급",
+                "incomeImg": "https://picsum.photos/id/102/300/200"
+            },
+            {
+                "incomeType": "주수입",
+                "incomeContent": "큐이엠 5월달 월급",
+                "incomeImg": "https://picsum.photos/id/102/300/200"
+            },
+            {
+                "incomeType": "주수입",
+                "incomeContent": "큐이엠 5월달 월급",
+                "incomeImg": "https://picsum.photos/id/102/300/200"
+            },
+            {
+                "incomeType": "주수입",
+                "incomeContent": "큐이엠 5월달 월급",
+                "incomeImg": "https://picsum.photos/id/102/300/200"
+            }
+    ]
 
     return (
         <div className='container mt-5'>
@@ -29,60 +54,29 @@ const Home = () => {
                 className='h3 d-inline col-lg-11 col-md-10 col-sm-9'
             >최근 추가한 수입</div>
 
-            <ModalButton 
-                size="col-lg-1 col-md-2 col-sm-3"
-                label="수입추가"
-                labelClose="취소" 
-                isModalOpen={ isModalOpen } 
-                setIsModalOpen= { setIsModalOpen }/>
+            <Button
+                className="col-lg-1 col-md-2 col-sm-3"
+                onClick={openIncome}
+            >
+                수입추가
+            </Button>
+
         </div>
 
         <CardGroup className='row'>
 
-            <div className="col-sm-6 col-lg-3">
-                <IncomeCard
-                    incomeType="주수입"
-                    incomeContent="큐이엠 5월달 월급"
-                    incomeImg="https://picsum.photos/id/100/300/200"
-                />
-            </div>
-
-            <div className='col-sm-6 col-lg-3'>
-                <IncomeCard 
-                    className="col-sm-6"
-                    incomeType="부수입" 
-                    incomeContent="쿠팡 배달"
-                    incomeImg="https://picsum.photos/id/101/300/200"
-                />
-            </div>
-
-            <div className='col-sm-6 col-lg-3'>
-                <IncomeCard 
-                    className="col-sm-6"
-                    incomeType="부수입" 
-                    incomeContent="쿠팡 배달"
-                    incomeImg="https://picsum.photos/id/102/300/200"
-                />
-            </div>
-
-            <div className='col-sm-6 col-lg-3'>
-                <IncomeCard 
-                    className="col-sm-6"
-                    incomeType="지원금" 
-                    incomeContent="국비지원 지원금 (3월)"
-                    incomeImg="https://picsum.photos/id/103/300/200"
-                    incomeValue="110000원"
-                />
-            </div>
-
+            {data.map(function(object, i) {
+                return <div className='col-sm-6 col-lg-3'>
+                    <IncomeCard
+                        incomeType={object.incomeType}
+                        incomeContent={object.incomeContent}
+                        incomeImg={object.incomeImg}
+                    />
+                </div>
+            })}
 
         </CardGroup>
 
-        <Modals
-            show={isModalOpen}
-        >
-            <Login isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
-        </Modals>
 
         </div>
     )
