@@ -1,13 +1,12 @@
 package com.jinkyumpark.incomemanagement.member;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Generated;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,9 +14,10 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Repository
 @Data
+@NoArgsConstructor
 public class Member {
     @Id
-    @Generated
+    @GeneratedValue
     private Long id;
 
     @NotBlank(message = "이메일은 아이디로 사용되서 반드시 입력해야 해요")
@@ -31,4 +31,9 @@ public class Member {
     private String pw;
 
     private String name;
+
+    public Member(String email, String pw) {
+        this.email = email;
+        this.pw = pw;
+    }
 }
