@@ -7,66 +7,109 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 @Service
 public class LoginService {
 
-    public String getAccessTokenKakao(String code) {
-        String access_Token = "";
-        String refresh_Token = "";
-        String reqURL = "https://kauth.kakao.com/oauth/token";
+    public String getKakaoAccessToken(String code) {
+        String REQUEST_URL = "https://kauth.kakao.com/oauth/token";
+        String CLIENT_ID = "275a6d69ef69fd06acf31e286ca672dd";
+        String REDIRECT_URI = "http://localhost/v1/login/kakao";
+
+        String accessToken = "";
 
         try {
-            URL url = new URL(reqURL);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            HttpURLConnection connection = getConnection(REQUEST_URL);
 
-            //POST 요청을 위해 기본값이 false인 setDoOutput을 true로
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
+            passParameterWithStream(connection.getOutputStream(), Map.of(
+                    "clientId", CLIENT_ID,
+                    "redirectUri", REDIRECT_URI,
+                    "code", code
+            ));
 
-            //POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-            StringBuilder sb = new StringBuilder();
-            sb.append("grant_type=authorization_code");
-            sb.append("&client_id=275a6d69ef69fd06acf31e286ca672dd"); // TODO REST_API_KEY 입력
-            sb.append("&redirect_uri=http://localhost/v1/login/kakao"); // TODO 인가코드 받은 redirect_uri 입력
-            sb.append("&code=" + code);
-            bw.write(sb.toString());
-            bw.flush();
+            String response = getResponseAsString(connection.getInputStream());
 
-            //결과 코드가 200이라면 성공
-            int responseCode = conn.getResponseCode();
-            System.out.println("responseCode : " + responseCode);
-
-            //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String line = "";
-            String result = "";
-
-            while ((line = br.readLine()) != null) {
-                result += line;
-            }
-            System.out.println("response body : " + result);
-
-            //Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
-            JsonParser parser = new JsonParser();
-            JsonElement element = parser.parse(result);
-
-            access_Token = element.getAsJsonObject().get("access_token").getAsString();
-            refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
-
-            System.out.println("access_token : " + access_Token);
-            System.out.println("refresh_token : " + refresh_Token);
-
-            br.close();
-            bw.close();
+            accessToken = parseJsonAsString(response, "access_token");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return access_Token;
+        return accessToken;
     }
 
+    private HttpURLConnection getConnection(String requestUrl) throws IOException {
+        URL url = new URL(requestUrl);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setDoOutput(true);
+        return connection;
+    }
+
+    private String getResponseAsString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+
+        while ((line = bufferedReader.readLine()) != null) {
+            result += line;
+        }
+        bufferedReader.close();
+        return result;
+    }
+
+    private String parseJsonAsString(String json, String key) {
+        JsonParser parser = new JsonParser();
+        JsonElement element = parser.parse(json);
+        return element.getAsJsonObject().get(key).getAsString();
+    }
+
+    private void passParameterWithStream(OutputStream outputStream, Map info) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("grant_type=authorization_code");
+        stringBuilder.append("&client_id=" + info.get("clientId"));
+        stringBuilder.append("&redirect_uri=" + info.get("redirectUri"));
+        stringBuilder.append("&code=" + info.get("code"));
+        bufferedWriter.write(stringBuilder.toString());
+        bufferedWriter.flush();
+        bufferedWriter.close();
+    }
+
+    public Map<String, Object> getKakaoUserInfo(String token) {
+
+        String REQUEST_URI = "https://kapi.kakao.com/v2/user/me";
+        Long id = null;
+        String email = null;
+
+        try {
+            HttpURLConnection connection = getConnection(REQUEST_URI);
+            connection.setRequestProperty("Authorization", "Bearer " + token);
+
+            String response = getResponseAsString(connection.getInputStream());
+
+            //Gson 라이브러리로 JSON파싱
+            JsonParser parser = new JsonParser();
+            JsonElement element = parser.parse(response);
+            id = element.getAsJsonObject().get("id").getAsLong();
+
+            boolean hasEmail = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("has_email").getAsBoolean();
+
+            if(hasEmail){
+                email = element.getAsJsonObject().get("kakao_account").getAsJsonObject().get("email").getAsString();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Map<String, Object> user = Map.of(
+                "id", id,
+                "email", email
+        );
+
+        return user;
+    }
 }

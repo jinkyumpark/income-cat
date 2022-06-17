@@ -24,14 +24,10 @@ public class Member {
     @Column(unique = true)
     private String email;
 
-    @NotBlank(message = "비밀번호는 반드시 입력해야 해요")
-    @NotNull
-    private String pw;
-
     private String name;
 
-    public Member(String email, String pw) {
+    public Member(Long id, String email) {
+        this.id = id;
         this.email = email;
-        this.pw = pw;
     }
 }

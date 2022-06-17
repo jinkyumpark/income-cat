@@ -27,11 +27,6 @@ public class MemberController {
         ms.insertMember(member);
     }
 
-    @PostMapping("/login")
-    public void login(@RequestBody @Valid Member member, HttpServletRequest request) {
-        ms.login(member, request);
-    }
-
     @PutMapping
     public void editMember(@RequestBody @Valid Member member) {
         ms.editMember(member);
