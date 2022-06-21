@@ -1,75 +1,95 @@
-import React from 'react'
+import React from "react";
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button } from 'react-bootstrap'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../static/css/login.css";
 
-import ModalButton from './ModalButton'
+import ModalButton from "./ModalButton";
 
-const Login = ({isLoginOpen, setIsLoginOpen, setIsLogin}) => {
+import kakaoButton from "../images/kakao-login-button.png";
+import naverButton from "../images/naver-login-button.png";
 
+const Login = ({ isLoginOpen, setIsLoginOpen, setIsLogin }) => {
     const closeModal = () => {
-        setIsLoginOpen(!isLoginOpen)
-    }
+        setIsLoginOpen(!isLoginOpen);
+    };
 
     const login = () => {
-        setIsLogin(true)
-        setIsLoginOpen(false)
-    }
+        setIsLogin(true);
+        setIsLoginOpen(false);
+    };
 
-  return (
-        <div className='container mt-5'>
-            <div className='text-center h2'>
-                로그인
-            </div>
+    const buttonStyle = {
+        width: "40%",
+    };
+
+    return (
+        <div className="container mt-5">
+            <div className="text-center h2">로그인</div>
 
             <form>
-                <div className='form-row mb-5'>
-                    <div className='form-group col-md-6 col-lg-11 m-3'>
-                        <label for='inputemail4'>아이디</label>
-                        <input 
-                            type="text" 
-                            className='form-control' 
-                            id='inputEmail4'
-                            placeholder='아이디를 입력해 주세요'
-                            />
+                <div className="form-group mb-4">
+                    <label htmlFor="" className="">
+                        아이디
+                    </label>
+                    <input type="text" name="" id="" className="form-control" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="" className="">
+                        비밀번호
+                    </label>
+                    <input
+                        type="password"
+                        name=""
+                        id=""
+                        className="form-control"
+                    />
+                </div>
+                <div className="row mb-3 mt-3">
+                    <div className="col-6">
+                        <button
+                            className="btn btn-success col-12"
+                            type="disabled"
+                        >
+                            로그인
+                        </button>
                     </div>
-                    <div className='form-group col-md-6 col-lg-11 m-3'>
-                        <label for="inputPassword4">비밀번호</label>
-                        <input 
-                            type="password" 
-                            className='form-control' 
-                            id="inputPassword4"
-                            placeholder='비밀번호를 입력해 주세요'
-                        />
-                    </div>
-
-                    <div className='row mt-5'>
-                        <div className='col-12 text-center'>
-                            <Button 
-                                className='btn col-4 btn-success m-1'
-                                onClick={login}
-                            >
-                                로그인
-                            </Button>
-
-                            <Button 
-                                className="btn col-4 btn-danger m-1"
-                                onClick={closeModal}    
-                            >
-                                취소
-                            </Button>
+                    <div className="col-6">
+                        <div
+                            className="btn btn-danger col-12"
+                            onClick={closeModal}
+                        >
+                            취소
                         </div>
                     </div>
-
-
                 </div>
             </form>
 
-
-
-
+            <div className="row p-3">
+                <div className="col-6">
+                    <img
+                        src={kakaoButton}
+                        alt="Kakao Login"
+                        className="img-fluid w-100"
+                        style={buttonStyle}
+                        onClick={() => {
+                            window.location.href =
+                                "https://kauth.kakao.com/oauth/authorize?client_id=275a6d69ef69fd06acf31e286ca672dd&redirect_uri=http://localhost/v1/login/kakao&response_type=code";
+                        }}
+                        id="loginButton"
+                    />
+                </div>
+                <div className="col-6">
+                    <img
+                        src={naverButton}
+                        alt="Naver Login"
+                        className="img-fluid w-100"
+                        style={buttonStyle}
+                        id="loginButton"
+                    />
+                </div>
+            </div>
         </div>
-  )
-}
+    );
+};
 
-export default Login
+export default Login;
