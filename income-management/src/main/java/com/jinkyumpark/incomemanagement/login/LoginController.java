@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -42,5 +41,12 @@ public class LoginController {
         session.setAttribute("loginUser", email);
 
         return Map.of("message", email + "(으)로 로그인 됐어요");
+    }
+
+    @RequestMapping("/logout")
+    public void logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        session.invalidate();
     }
 }

@@ -17,8 +17,11 @@ public class Income {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "member")
-    private Member memberId;
+    @JoinColumn(
+            name = "member_id",
+            foreignKey = @ForeignKey(name = "income_member_fk")
+    )
+    private Member member;
 
     enum IncomeType {
         MAIN,
@@ -33,5 +36,5 @@ public class Income {
 
     private Currency currency;
 
-    private Timestamp depositeDate;
+    private Timestamp depositeDate = new Timestamp(System.currentTimeMillis());
 }
