@@ -1,17 +1,13 @@
 // Core React
 import React from "react";
-import { state, useState } from "react";
 
 // Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Alert, CardGroup, Button, Modal } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 
 // React Component
-import IncomeCard from "../IncomeCard";
-import ModalButton from "../ModalButton";
-import Login from "../Login";
 import LatestIncome from "./LatestIncome";
-import HomeAsset from "./HomeAsset";
+import HomeSummary from "./HomeSummary";
 
 const Home = (props) => {
     const openIncome = () => {
@@ -20,9 +16,12 @@ const Home = (props) => {
 
     return (
         <div className="container mt-5">
-            <Alert>박진겸님은 이번달에 1,000,000원 버셨어요</Alert>
+            <Alert>
+                반가워요 박진겸님! 이번달에도 열심히 하셔서 다양한 곳에서 수익을
+                얻으셨어요
+            </Alert>
 
-            <HomeAsset />
+            <HomeSummary />
 
             <LatestIncome openIncome={openIncome} />
         </div>

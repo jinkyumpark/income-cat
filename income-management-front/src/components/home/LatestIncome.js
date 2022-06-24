@@ -35,12 +35,12 @@ const LatestIncome = (props) => {
                     최근 추가한 수입
                 </div>
 
-                <Button
+                {/* <Button
                     className="col-lg-2 col-md-3 col-sm-4"
                     onClick={props.openIncome}
                 >
                     수입추가
-                </Button>
+                </Button> */}
             </div>
 
             <CardGroup className="row">

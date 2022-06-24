@@ -2,11 +2,17 @@ import React from "react";
 
 // Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useEffect } from "react";
 
 const AddIncomeForm = (props) => {
     const closeForm = () => {
         props.setIsIncomeOpen(false);
     };
+
+    const today = new Date(Date.now());
+    const todayYear = today.getFullYear();
+    const todayMonth = today.getMonth() + 1;
+    const todayDay = today.getDate();
 
     return (
         <div className="container">
@@ -70,12 +76,32 @@ const AddIncomeForm = (props) => {
                             </div>
                             <div className="col">
                                 <select className="form-control">
-                                    <option>월</option>
+                                    {[...Array(11).keys()].map((month) => {
+                                        return (
+                                            <option
+                                                value={month + 1}
+                                                selected={
+                                                    todayMonth == month + 1
+                                                }
+                                            >
+                                                {month + 1}월
+                                            </option>
+                                        );
+                                    })}
                                 </select>
                             </div>
                             <div className="col">
                                 <select className="form-control">
-                                    <option>일</option>
+                                    {[...Array(30).keys()].map((date) => {
+                                        return (
+                                            <option
+                                                value={date + 1}
+                                                selected={todayDay == date + 1}
+                                            >
+                                                {date + 1}일
+                                            </option>
+                                        );
+                                    })}
                                 </select>
                             </div>
                         </div>

@@ -16,6 +16,7 @@ import Asset from "./components/Asset";
 // Bootstrap
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import FloatingButton from "./components/common/FloatingButton";
 
 function App() {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -45,6 +46,8 @@ function App() {
                     <Route path="/info" element={<Info />} />
                     <Route path="/assset" element={<Asset />} />
                 </Routes>
+
+                <FloatingButton setIsIncomeOpen={setIsIncomeOpen} />
 
                 <Footer />
             </Router>
