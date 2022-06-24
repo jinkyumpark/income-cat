@@ -12,11 +12,11 @@ import Intro from "./components/Intro";
 import Footer from "./components/common/Footer";
 import AddIncomeForm from "./components/AddIncomeForm";
 import Asset from "./components/Asset";
+import FloatingButton from "./components/common/FloatingButton";
 
 // Bootstrap
 import { Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import FloatingButton from "./components/common/FloatingButton";
 
 function App() {
     const [isLoginOpen, setIsLoginOpen] = useState(false);

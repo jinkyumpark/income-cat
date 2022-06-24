@@ -30,7 +30,7 @@ const LatestIncome = (props) => {
 
     return (
         <div>
-            <div className="w-100 mt-4 mb-4 row">
+            <div className="w-100 mt-4 row">
                 <div className="h3 d-inline col-lg-10 col-md-9 col-sm-8">
                     최근 추가한 수입
                 </div>
