@@ -12,7 +12,7 @@ const FloatingButton = (props) => {
                     bottom: "10vh",
                     fontSize: "75px",
                 }}
-                className="text-primary"
+                className="text-warning"
                 onClick={() => {
                     props.setIsIncomeOpen(true);
                 }}

@@ -12,7 +12,7 @@ const Topnav = ({ isLoginOpen, setIsLoginOpen }) => {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-warning">
             <a className="navbar-brand ps-5 pe-5" href="/">
                 🐱 Income Cat
             </a>

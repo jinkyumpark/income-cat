@@ -13,3 +13,6 @@
   - classnames
 
 ## 백엔드
+- Spring Boot
+- ORM(JPA)
+- MySQL

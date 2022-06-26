@@ -7,24 +7,34 @@ import { CardGroup, Button, Modal } from "react-bootstrap";
 const LatestIncome = (props) => {
     const incomeList = [
         {
-            type: "주수입",
-            description: "큐이엠 5월달 월급",
-            image: "https://picsum.photos/id/102/300/200",
+            key: 0,
+            type: 0,
+            description: "비바리퍼블리카 7월달 월급",
+            value: 5500000,
         },
         {
-            type: "주수입",
-            description: "큐이엠 5월달 월급",
-            image: "https://picsum.photos/id/102/300/200",
+            key: 1,
+            type: 1,
+            description: "배달 알바",
+            value: 17000,
         },
         {
-            type: "주수입",
-            description: "큐이엠 5월달 월급",
-            image: "https://picsum.photos/id/102/300/200",
+            key: 2,
+            type: 2,
+            description: "취업장려금 6월",
+            value: 500000,
         },
         {
-            type: "주수입",
-            description: "큐이엠 5월달 월급",
-            image: "https://picsum.photos/id/102/300/200",
+            key: 3,
+            type: 3,
+            description: "리얼티인컴 배당 6월",
+            value: 50000,
+        },
+        {
+            key: 4,
+            type: 4,
+            description: "QQQM 판매",
+            value: 160000,
         },
     ];
 
@@ -47,11 +57,7 @@ const LatestIncome = (props) => {
                 {incomeList.map((income, i) => {
                     return (
                         <div className="col-sm-6 col-lg-3 p-3">
-                            <IncomeCard
-                                incomeType={income.type}
-                                incomeContent={income.description}
-                                incomeImg={income.image}
-                            />
+                            <IncomeCard income={income} />
                         </div>
                     );
                 })}
