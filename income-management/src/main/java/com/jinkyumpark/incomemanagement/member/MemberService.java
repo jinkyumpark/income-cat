@@ -4,29 +4,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Service
 public class MemberService {
-    private final MemberRepository mr;
+    private final MemberRepository memberRepository;
 
     @Autowired
     public MemberService(MemberRepository mr) {
-        this.mr = mr;
+        this.memberRepository = mr;
     }
 
     public Member selectMemberByEmail(String email) {
-        return mr.findByEmail(email)
+        return memberRepository.findByEmail(email)
                 .orElse(null);
     }
 
     public void insertMember(Member member) {
-        mr.save(member);
+        memberRepository.save(member);
     }
 
     @Transactional
     public void editMember(Member editedMember) {
-        Member member = mr.findByEmail(editedMember.getEmail())
+        Member member = memberRepository.findByEmail(editedMember.getEmail())
                 .orElseThrow(() -> new IllegalStateException(
                         "수정하려는 유저가 없어요"
                 ));
@@ -39,13 +39,17 @@ public class MemberService {
     }
 
     public void deleteMember(Member memberToDelete) {
-        Member member = mr.findByEmail(memberToDelete.getEmail())
+        Member member = memberRepository.findByEmail(memberToDelete.getEmail())
                 .orElseThrow(() -> new IllegalStateException(
                         "회원탈퇴 하려는 유저가 없어요"
                 ));
 
         // TODO : Check if memberToDelete matches loginUser
 
-        mr.deleteById(member.getId());
+        memberRepository.deleteById(member.getId());
+    }
+
+    public List<Member> findAllMembers() {
+        return (List<Member>) memberRepository.findAll();
     }
 }

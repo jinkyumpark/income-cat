@@ -13,7 +13,7 @@ import java.util.Currency;
 @Data
 public class Income {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
@@ -23,7 +23,7 @@ public class Income {
     )
     private Member member;
 
-    enum IncomeType {
+    public enum IncomeType {
         MAIN,
         PARTTIME,
         GOVERNMENT,
@@ -32,7 +32,7 @@ public class Income {
     }
     private IncomeType type;
 
-    private Integer amount;
+    private Double amount;
 
     private Currency currency;
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.print.Pageable;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -19,6 +20,16 @@ public class IncomeService {
     public List<Income> getIncomeList() {
         Long id = 1L;
         return incomeRepository.getIncomeById(id);
+    }
+
+    public Double getIncomeSum(Long id, Income.IncomeType incomeType, Timestamp startDate, Timestamp endDate) {
+        List<Income> incomeList = incomeRepository.findIncomeByIdAndType(id, incomeType);
+
+        Double sum = incomeList.stream()
+                .mapToDouble(income -> income.getAmount())
+                .sum();
+
+        return sum;
     }
 
     public void addIncome(Income income) {
@@ -54,4 +65,5 @@ public class IncomeService {
 
         incomeRepository.deleteById(id);
     }
+
 }
