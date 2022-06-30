@@ -30,12 +30,12 @@ const LatestIncome = (props) => {
             description: "리얼티인컴 배당 6월",
             value: 50000,
         },
-        {
-            key: 4,
-            type: 4,
-            description: "QQQM 판매",
-            value: 160000,
-        },
+        // {
+        //     key: 4,
+        //     type: 4,
+        //     description: "QQQM 판매",
+        //     value: 160000,
+        // },
     ];
 
     return (
@@ -62,6 +62,14 @@ const LatestIncome = (props) => {
                     );
                 })}
             </CardGroup>
+
+            <div className="row mt-3 mb-3">
+                <div className="col-lg-4 col-0"></div>
+                <div className="col-lg-4 col-12">
+                    <div className="btn btn-success w-100">더 보기</div>
+                </div>
+                <div className="col-lg-4 col-0"></div>
+            </div>
         </div>
     );
 };

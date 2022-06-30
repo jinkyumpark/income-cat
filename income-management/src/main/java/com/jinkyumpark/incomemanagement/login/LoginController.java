@@ -38,7 +38,7 @@ public class LoginController {
         }
 
         HttpSession session = request.getSession();
-        session.setAttribute("loginUser", email);
+        session.setAttribute("loginUser", memberByEmail);
 
         return Map.of("message", email + "(으)로 로그인 됐어요");
     }

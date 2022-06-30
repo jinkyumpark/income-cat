@@ -1,11 +1,17 @@
 package com.jinkyumpark.incomemanagement.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/member")
@@ -22,14 +28,23 @@ public class MemberController {
         return memberService.findAllMembers();
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("{email}")
     public Member getMemberByEmail(@RequestParam(value = "email") @Email String email) {
         return memberService.selectMemberByEmail(email);
     }
 
+    @GetMapping("login")
+    public Member getLoginuser(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        Member member = (Member) session.getAttribute("loginUser");
+
+        return member;
+    }
+
     @PostMapping
     public void addMember(@RequestBody @Valid Member member) {
-        memberService.insertMember(member);
+        memberService.addMember(member);
     }
 
     @PutMapping

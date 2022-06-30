@@ -26,8 +26,8 @@ public class IncomeController {
 
     @GetMapping("/summary/{id}")
     public Map<String, Double> getIncomeSummary(@PathVariable("id") Long id,
-                                                    @RequestParam(value = "startDate", required = false) Timestamp startDate,
-                                                    @RequestParam(value = "endDate", required = false) Timestamp endDate){
+                                                @RequestParam(value = "startDate", required = false) Timestamp startDate,
+                                                @RequestParam(value = "endDate", required = false) Timestamp endDate) {
 //        defaultValue = String.valueOf(Timestamp.valueOf(LocalDateTime.now().minusDays(30)))
 //        defaultValue = LocalDateTime.now()
 

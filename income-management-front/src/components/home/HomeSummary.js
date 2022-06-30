@@ -75,7 +75,7 @@ const HomeSummary = () => {
 
             <div className="mt-4 mb-4 row">
                 <div className="row">
-                    <div className="col-12 col-lg-4">
+                    <div className="col-12 col-lg-4 mb-5">
                         <Pie data={pieData} />
                     </div>
 

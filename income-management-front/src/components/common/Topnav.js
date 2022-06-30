@@ -34,7 +34,7 @@ const Topnav = ({ isLoginOpen, setIsLoginOpen }) => {
                     <a className="nav-item nav-link" href="/manage">
                         수입관리
                     </a>
-                    <a className="nav-item nav-link" href="/asset">
+                    {/* <a className="nav-item nav-link" href="/asset">
                         재산관리
                     </a>
                     <a className="nav-item nav-link" href="/info">
@@ -42,7 +42,7 @@ const Topnav = ({ isLoginOpen, setIsLoginOpen }) => {
                     </a>
                     <a className="nav-item nav-link" href="/community">
                         커뮤니티
-                    </a>
+                    </a> */}
                 </div>
             </div>
 

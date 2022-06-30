@@ -20,7 +20,7 @@ public class MemberService {
                 .orElse(null);
     }
 
-    public void insertMember(Member member) {
+    public void addMember(Member member) {
         memberRepository.save(member);
     }
 

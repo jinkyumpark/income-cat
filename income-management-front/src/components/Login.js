@@ -26,7 +26,30 @@ const Login = ({ isLoginOpen, setIsLoginOpen, setIsLogin }) => {
         <div className="container mt-5">
             <div className="text-center h2">로그인</div>
 
-            <form>
+            <div className="row p-3 mb-3">
+                <img
+                    src={kakaoButton}
+                    alt="Kakao Login"
+                    className="img-fluid w-100 mb-3"
+                    style={buttonStyle}
+                    onClick={() => {
+                        window.location.href =
+                            "https://kauth.kakao.com/oauth/authorize?client_id=275a6d69ef69fd06acf31e286ca672dd&redirect_uri=http://localhost/v1/login/kakao&response_type=code";
+                    }}
+                    id="loginButton"
+                />
+                <img
+                    src={naverButton}
+                    alt="Naver Login"
+                    className="img-fluid w-100"
+                    style={buttonStyle}
+                    id="loginButton"
+                />
+            </div>
+
+            <hr />
+
+            <form className="mt-4">
                 <div className="form-group mb-4">
                     <label htmlFor="" className="">
                         아이디
@@ -63,31 +86,6 @@ const Login = ({ isLoginOpen, setIsLoginOpen, setIsLogin }) => {
                     </div>
                 </div>
             </form>
-
-            <div className="row p-3">
-                <div className="col-6">
-                    <img
-                        src={kakaoButton}
-                        alt="Kakao Login"
-                        className="img-fluid w-100"
-                        style={buttonStyle}
-                        onClick={() => {
-                            window.location.href =
-                                "https://kauth.kakao.com/oauth/authorize?client_id=275a6d69ef69fd06acf31e286ca672dd&redirect_uri=http://localhost/v1/login/kakao&response_type=code";
-                        }}
-                        id="loginButton"
-                    />
-                </div>
-                <div className="col-6">
-                    <img
-                        src={naverButton}
-                        alt="Naver Login"
-                        className="img-fluid w-100"
-                        style={buttonStyle}
-                        id="loginButton"
-                    />
-                </div>
-            </div>
         </div>
     );
 };

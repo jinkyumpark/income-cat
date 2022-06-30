@@ -2,12 +2,14 @@ package com.jinkyumpark.incomemanagement.member;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
 
 @Entity
 @Repository
@@ -15,11 +17,11 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class Member {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank(message = "이메일은 아이디로 사용되서 반드시 입력해야 해요")
-    @NotNull
+    @NotNull(message = "이메일은 아이디로 사용되서 반드시 입력해야 해요")
     @Email
     @Column(unique = true)
     private String email;
