@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.print.Pageable;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -13,6 +12,9 @@ public class IncomeService {
 
     @Autowired
     IncomeRepository incomeRepository;
+
+    @Autowired
+    IncomeSubCategoryRepository incomeSubCategoryRepository;
 
     private final String EDIT_ERROR_MESSAGE = "수정하실려는 수입이 없어요";
     private final String DELETE_ERROR_MESSAGE = "수입을 지울 수 없었어요";
@@ -51,8 +53,8 @@ public class IncomeService {
             income.setCurrency(editedIncome.getCurrency());
         }
 
-        if(editedIncome.getType() != null) {
-            income.setType(editedIncome.getType());
+        if(editedIncome.getMainCategory() != null) {
+            income.setMainCategory(editedIncome.getMainCategory());
         }
 
         if(editedIncome.getDepositeDate() != null) {
@@ -66,4 +68,7 @@ public class IncomeService {
         incomeRepository.deleteById(id);
     }
 
+    public void addIncomeSubCategory(IncomeSubCategory subCategory) {
+        incomeSubCategoryRepository.save(subCategory);
+    }
 }

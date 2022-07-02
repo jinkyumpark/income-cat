@@ -52,6 +52,12 @@ public class IncomeController {
         incomeService.addIncome(income);
     }
 
+    @RequestMapping("category/sub")
+    @PostMapping
+    public void addIncomeSubCategory(@RequestBody @Valid IncomeSubCategory subCategory) {
+        incomeService.addIncomeSubCategory(subCategory);
+    }
+
     @PutMapping
     public void editIncome(@RequestBody @Valid Income editedIncome) {
         incomeService.editIncome(editedIncome);

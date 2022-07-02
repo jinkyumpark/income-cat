@@ -30,10 +30,18 @@ public class Income {
         DIVIDEND,
         CAPITAL
     }
-    private IncomeType type;
+    private IncomeType mainCategory;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "income_sub_category_id",
+            foreignKey = @ForeignKey(name = "income_sub_category_fk")
+    )
+    private IncomeSubCategory subCategory;
+
+    private String description;
 
     private Double amount;
-
     private Currency currency;
 
     private Timestamp depositeDate = new Timestamp(System.currentTimeMillis());
