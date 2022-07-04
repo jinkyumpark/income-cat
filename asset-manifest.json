@@ -1,21 +1,22 @@
 {
   "files": {
     "main.css": "/static/css/main.774bd0a8.css",
-    "main.js": "/static/js/main.7f30e294.js",
+    "main.js": "/static/js/main.b83270f6.js",
     "static/js/787.c8052138.chunk.js": "/static/js/787.c8052138.chunk.js",
     "static/media/income-dividend.png": "/static/media/income-dividend.e1e26f58055046c44a19.png",
     "static/media/income-sub.png": "/static/media/income-sub.5dc2a2a4a913f6266844.png",
     "static/media/income-capital.png": "/static/media/income-capital.a13642cd973f9a5d8dab.png",
+    "static/media/kakao-login-button.png": "/static/media/kakao-login-button.d7082f91c441c52ee2ed.png",
     "static/media/income-main.png": "/static/media/income-main.6699648f4c014b2ee9fe.png",
+    "static/media/naver-login-button.png": "/static/media/naver-login-button.93098740ae0856fd0e82.png",
     "static/media/survey-icon.png": "/static/media/survey-icon.f784611ddc14313243da.png",
-    "static/media/naver-login-button.png": "/static/media/naver-login-button.4382736d0fcc19a758c7.png",
     "index.html": "/index.html",
     "main.774bd0a8.css.map": "/static/css/main.774bd0a8.css.map",
-    "main.7f30e294.js.map": "/static/js/main.7f30e294.js.map",
+    "main.b83270f6.js.map": "/static/js/main.b83270f6.js.map",
     "787.c8052138.chunk.js.map": "/static/js/787.c8052138.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.774bd0a8.css",
-    "static/js/main.7f30e294.js"
+    "static/js/main.b83270f6.js"
   ]
 }
