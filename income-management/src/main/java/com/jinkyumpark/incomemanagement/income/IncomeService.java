@@ -1,6 +1,10 @@
 package com.jinkyumpark.incomemanagement.income;
 
+import com.jinkyumpark.incomemanagement.income.category.main.IncomeMainCategory;
+import com.jinkyumpark.incomemanagement.income.category.sub.IncomeSubCategory;
+import com.jinkyumpark.incomemanagement.income.category.sub.IncomeSubCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,13 +23,12 @@ public class IncomeService {
     private final String EDIT_ERROR_MESSAGE = "수정하실려는 수입이 없어요";
     private final String DELETE_ERROR_MESSAGE = "수입을 지울 수 없었어요";
 
-    public List<Income> getIncomeList() {
-        Long id = 1L;
-        return incomeRepository.getIncomeById(id);
+    public List<Income> getIncomeList(Long id, Timestamp startDate, Timestamp endDate, Pageable page) {
+        return incomeRepository.findAllIncomeByIdAndDepositeDateIsBetween(id, startDate, endDate, page);
     }
 
-    public Double getIncomeSum(Long id, Income.IncomeType incomeType, Timestamp startDate, Timestamp endDate) {
-        List<Income> incomeList = incomeRepository.findIncomeByIdAndType(id, incomeType);
+    public Double getIncomeSum(Long id, IncomeMainCategory incomeType, Timestamp startDate, Timestamp endDate) {
+        List<Income> incomeList = incomeRepository.findIncomeByIdAndMainCategory(id, incomeType);
 
         Double sum = incomeList.stream()
                 .mapToDouble(income -> income.getAmount())
