@@ -27,5 +27,4 @@ public class IncomeCategoryController {
     public void addIncomeSubCategory(@Valid @RequestBody IncomeSubCategory incomeSubCategory) {
         incomeSubCategoryService.addIncomeSubCategory(incomeSubCategory);
     }
-
 }

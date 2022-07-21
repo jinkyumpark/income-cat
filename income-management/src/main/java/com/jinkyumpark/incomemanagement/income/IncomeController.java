@@ -18,12 +18,10 @@ public class IncomeController {
     IncomeService incomeService;
 
     @GetMapping
-    public List<Income> getIncomeList(@RequestBody Timestamp startDate,
-                                      @RequestBody Timestamp endDate,
+    public List<Income> getIncomeList(@RequestBody IncomeRequest incomeRequest,
                                       @PageableDefault(size = 10) Pageable page) {
         Long id = 1L;
-
-        return incomeService.getIncomeList(id, startDate, endDate, page);
+        return incomeService.getIncomeList(id, incomeRequest.getStartDate(), incomeRequest.getEndDate(), page);
     }
 
     @GetMapping("/total/{id}")
