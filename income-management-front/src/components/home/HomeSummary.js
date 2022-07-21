@@ -101,10 +101,10 @@ const HomeSummary = () => {
                                 <div className="col-12 col-lg-6">
                                     <Card style={cardStyle}>
                                         <Card.Body className="pt-0">
-                                            <Line
+                                            {/* <Line
                                                 data={lineData}
                                                 options={lineOptions}
-                                            />
+                                            /> */}
                                         </Card.Body>
                                     </Card>
                                 </div>

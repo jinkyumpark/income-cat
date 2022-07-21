@@ -1,23 +1,23 @@
-import React from 'react'
+import React from "react";
 
 // Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Footer = () => {
-  return (
-    <footer className='bg-dark text-center text-white mt-auto'>
-        <div className='container pb-0'>
-            <section className=''>
+    return (
+        <footer className="bg-dark text-center text-white mt-auto">
+            <div className="container pb-0">
+                <section className=""></section>
+            </div>
 
-            </section>
-        </div>
+            <a
+                className="text-center p-1 text-white text-decoration-none"
+                href="info"
+            >
+                © 2022 Copyright: (주)그래도 고양이
+            </a>
+        </footer>
+    );
+};
 
-        <div className="text-center p-1">
-            © 2022 Copyright: (주)그래도 고양이
-        </div>
-
-    </footer>
-  )
-}
-
-export default Footer
+export default Footer;
