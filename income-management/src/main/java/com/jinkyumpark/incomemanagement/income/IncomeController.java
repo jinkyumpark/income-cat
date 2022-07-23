@@ -1,5 +1,6 @@
 package com.jinkyumpark.incomemanagement.income;
 
+import com.jinkyumpark.incomemanagement.income.category.main.IncomeMainCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,29 +26,25 @@ public class IncomeController {
         return incomeService.getIncomeList(id, incomeRequest.getStartDate(), incomeRequest.getEndDate(), page);
     }
 
-    @GetMapping("/total/{id}")
-    public Map<String, Double> getIncomeSummary(@PathVariable("id") Long id,
-                                                @RequestParam(value = "startDate", required = false) Timestamp startDate,
-                                                @RequestParam(value = "endDate", required = false) Timestamp endDate) {
-//        defaultValue = String.valueOf(Timestamp.valueOf(LocalDateTime.now().minusDays(30)))
-//        defaultValue = LocalDateTime.now()
+    @GetMapping("total")
+    public Map<String, Double> getIncomeSummary(@RequestBody IncomeRequest incomeRequest) {
 
-//        Double mainIncomeSum = incomeService.getIncomeSum(id, IncomeMainCategory.MAIN, startDate, endDate);
-//        Double parttimeIncomeSum = incomeService.getIncomeSum(id, IncomeMainCategory.PARTTIME, startDate, endDate);
-//        Double governmentIncomeSum = incomeService.getIncomeSum(id, IncomeMainCategory.GOVERNMENT, startDate, endDate);
-//        Double dividendIncomeSum = incomeService.getIncomeSum(id, IncomeMainCategory.DIVIDEND, startDate, endDate);
-//        Double capitalIncomeSum = incomeService.getIncomeSum(id, IncomeMainCategory.CAPITAL, startDate, endDate);
-//
-//        Map<String, Double> incomeSum = new HashMap<>();
-//        incomeSum.put("mainIncome", mainIncomeSum);
-//        incomeSum.put("parttimeIncome", parttimeIncomeSum);
-//        incomeSum.put("dividendIncome", dividendIncomeSum);
-//        incomeSum.put("governmentIncome", governmentIncomeSum);
-//        incomeSum.put("capitalIncome", capitalIncomeSum);
-//
-//        return incomeSum;
+        Long id = 1L;
 
-        return null;
+        Double mainIncomeSum = incomeService.getIncomeSum(id, IncomeMainCategory.MAIN, incomeRequest.getStartDate(), incomeRequest.getEndDate());
+        Double parttimeIncomeSum = incomeService.getIncomeSum(id, IncomeMainCategory.PARTTIME, incomeRequest.getStartDate(), incomeRequest.getEndDate());
+        Double governmentIncomeSum = incomeService.getIncomeSum(id, IncomeMainCategory.GOVERNMENT, incomeRequest.getStartDate(), incomeRequest.getEndDate());
+        Double dividendIncomeSum = incomeService.getIncomeSum(id, IncomeMainCategory.DIVIDEND, incomeRequest.getStartDate(), incomeRequest.getEndDate());
+        Double capitalIncomeSum = incomeService.getIncomeSum(id, IncomeMainCategory.CAPITAL, incomeRequest.getStartDate(), incomeRequest.getEndDate());
+
+        Map<String, Double> incomeSum = new HashMap<>();
+        incomeSum.put("mainIncome", mainIncomeSum);
+        incomeSum.put("parttimeIncome", parttimeIncomeSum);
+        incomeSum.put("dividendIncome", dividendIncomeSum);
+        incomeSum.put("governmentIncome", governmentIncomeSum);
+        incomeSum.put("capitalIncome", capitalIncomeSum);
+
+        return incomeSum;
     }
 
     @PostMapping

@@ -7,5 +7,5 @@ import java.sql.Timestamp;
 @Data
 public class IncomeRequest {
     private Timestamp startDate;
-    private Timestamp endDate;
+    private Timestamp endDate = new Timestamp(System.currentTimeMillis());
 }

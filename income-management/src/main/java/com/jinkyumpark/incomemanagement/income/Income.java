@@ -23,7 +23,6 @@ public class Income {
             generator = "income_sequence")
     private Long id;
 
-
     @ManyToOne
     @JoinColumn(name = "member", foreignKey = @ForeignKey(name = "income_member_fk"))
     private Member member;

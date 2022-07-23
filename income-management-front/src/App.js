@@ -5,7 +5,7 @@ import { state, useState } from "react";
 // Component
 import Topnav from "./components/common/Topnav";
 import Home from "./components/home/Home";
-import Manage from "./components/Manage";
+import Manage from "./components/manage/Manage";
 import Login from "./components/Login";
 import Info from "./components/Info";
 import Intro from "./components/Intro";
